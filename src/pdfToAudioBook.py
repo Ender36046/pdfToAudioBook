@@ -2,17 +2,17 @@ import pyttsx3
 from pdfreader import PDFDocument, SimplePDFViewer
 from tkinter.filedialog import *
 
-file = askopenfilename()
+file = askopenfilename() #open the pdf file on your computer
 fd = open(file, "rb")
 doc = PDFDocument(fd)
 viewer = SimplePDFViewer(fd)
 player = pyttsx3.init()
 
-all_pages = [p for p in doc.pages()]
+all_pages = [p for p in doc.pages()] #get all the pages of the pdf document
 
-for i in range(1, len(all_pages)+1):
-    viewer.navigate(i)
+for i in range(1, len(all_pages)+1): #range is (1, page_amount +1) since viewer starts index at 1 and ends at page_amount
+    viewer.navigate(i) 
     viewer.render()
-    page_text = "".join(viewer.canvas.strings)
-    player.say(page_text)
-    player.runAndWait()
+    page_text = "".join(viewer.canvas.strings) #viewer.canvas.strings returns an array of strings of each individual character, joining them makes them one string
+    player.say(page_text) #say the text of the page
+    player.runAndWait() #run and wait
