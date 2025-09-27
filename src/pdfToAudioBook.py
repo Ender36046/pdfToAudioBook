@@ -1,5 +1,4 @@
 import pyttsx3
-import pdfreader
 from pdfreader import PDFDocument, SimplePDFViewer
 from tkinter.filedialog import *
 
