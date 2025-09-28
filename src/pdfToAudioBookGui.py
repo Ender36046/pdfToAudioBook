@@ -11,9 +11,13 @@ def initializeTk(player):
     def initializeFile(dict):
         file = askopenfilename()
         baseFilename = os.path.basename(file)
-        dict["filename"] = file
-        filenameLabel.config(text = f"Filename: {baseFilename}")
-        getPages(file)
+        if os.path.splitext(file)[1] == ".pdf":
+            dict["filename"] = file
+            filenameLabel.config(text = f"Filename: {baseFilename}")
+            getPages(file)
+        else:
+            filenameLabel.config(text = "Non-PDF file selected!")
+            totalPagesLabel.config(text = "Total pages: n/a")
 
     def getPages(filename):
         fd = open(filename, "rb")
